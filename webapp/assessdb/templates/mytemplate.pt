@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="pyramid web application">
     <meta name="author" content="Steve Spicklemire">
-    <link rel="shortcut icon" href="${request.static_url('phessassess:static/pyramid-16x16.png')}">
+    <link rel="shortcut icon" href="${request.static_url('assessdb:static/pyramid-16x16.png')}">
 
     <title>PHYS/ESCI Assessment Site</title>
 
@@ -14,8 +14,8 @@
     <link href="//oss.maxcdn.com/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="${request.static_url('phessassess:static/theme.css')}" rel="stylesheet">
-    <link rel="shortcut icon" href="${request.static_url('phessassess:static/favicon.ico')}" />
+    <link href="${request.static_url('assessdb:static/theme.css')}" rel="stylesheet">
+    <link rel="shortcut icon" href="${request.static_url('assessdb:static/favicon.ico')}" />
     
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -29,7 +29,7 @@
     <div class="starter-template">
       <div class="container">
         <div class="row">
-         <img class="logo img-responsive" src="${request.static_url('phessassess:static/LogowithTagline.png')}" alt="pyramid web framework">
+         <img class="logo img-responsive" src="${request.static_url('assessdb:static/LogowithTagline.png')}" alt="pyramid web framework">
         </div>
         <div class="row">
           <div class="col-md-11">

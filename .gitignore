@@ -5,3 +5,5 @@
 foo.ini
 build
 dist
+webapp/assessdb.egg-info/
+

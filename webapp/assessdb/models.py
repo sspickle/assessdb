@@ -36,7 +36,7 @@ def expandvars_dict(settings):
 DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
 Base = declarative_base()
 
-class Courses(Base):
+class Course(Base):
     __tablename__ = 'courses'
     id = Column(Integer, primary_key=True)
     subject = Column(Text)
@@ -45,14 +45,14 @@ class Courses(Base):
     term = Column(Integer)
     CRN = Column(Integer)
     
-class People(Base):
+class Person(Base):
     __tablename__ = 'people'
     id = Column(Integer, primary_key=True)
     first = Column(Text)
     last = Column(Text)
     upid = Column(Text)
     
-class Roles(Base):
+class Role(Base):
     __tablename__ = 'roles'
     id = Column(Integer, primary_key=True)
     name = Column(Text)
@@ -65,11 +65,11 @@ class CoursesPeople(Base):
     courseid = Column(Integer, ForeignKey('courses.id'), primary_key=True)
     personid = Column(Integer, ForeignKey('people.id'), primary_key=True)
     roleid = Column(Integer, ForeignKey('roles.id'), primary_key=True)
-    person = relationship("People", backref="courses_assocs")
-    course = relationship("Courses", backref="people_assocs")
-    role = relationship("Roles")
+    person = relationship("Person", backref="courses_assocs")
+    course = relationship("Course", backref="people_assocs")
+    role = relationship("Role")
 
-class Instruments(Base):
+class Instrument(Base):
     __tablename__ = 'instruments'
     id = Column(Integer, primary_key=True)
     ancestorid = Column(Integer, ForeignKey('instruments.id'))
@@ -77,13 +77,13 @@ class Instruments(Base):
     description = Column(Text)
     genetics = Column(Text)
     
-class Objectives(Base):
+class Objective(Base):
     __tablename__ = 'objectives'
     id = Column(Integer, primary_key=True)
     name = Column(Text)
     description = Column(Text)
 
-class Assessments(Base):
+class Assessment(Base):
     __tablename__ = 'assessments'
     id = Column(Integer, primary_key=True)
     type = Column(Text)
@@ -91,7 +91,7 @@ class Assessments(Base):
     instrumentid = Column(Integer, ForeignKey('instruments.id'))
     tstamp = Column(DateTime, default=datetime.datetime.utcnow)
     
-class Responses(Base):
+class Response(Base):
     __tablename__ = 'responses'
     id = Column(Integer, primary_key=True)
     assessmentid = Column(Integer, ForeignKey('assessments.id'))
@@ -100,7 +100,7 @@ class Responses(Base):
     value = Column(Text)
     tstamp = Column(DateTime, default=datetime.datetime.utcnow)
     
-class Items(Base):
+class Item(Base):
     __tablename__ = 'items'
     id = Column(Integer, primary_key=True)
     ancestorid = Column(Integer, ForeignKey('items.id'), default=None)
@@ -113,13 +113,13 @@ class InstrumentItems(Base):
     itemid = Column(Integer, ForeignKey('items.id'), primary_key=True)
     contextid = Column(Text)
     
-class Blobs(Base):
+class Blob(Base):
     __tablename__ = 'blobs'
     id = Column(Integer, primary_key=True)
     type = Column(Text)
     data = Column(Binary)
 
-class Answers(Base):
+class Answer(Base):
     __tablename__ = 'answers'
     id = Column(Integer, primary_key=True)
     markup = Column(Text)
@@ -142,6 +142,6 @@ class ItemAnswers(Base):
     answerattr = Column(Text, default='')
     
 class ItemObjectives(Base):
-    __tablename__ = 'itemo_bjectives'
+    __tablename__ = 'itemo_objectives'
     itemid = Column(Integer, ForeignKey('items.id'), primary_key=True)
     objectiveid = Column(Integer, ForeignKey('objectives.id'), primary_key=True)

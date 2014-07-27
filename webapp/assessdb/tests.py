@@ -13,13 +13,13 @@ class TestMyViewSuccessCondition(unittest.TestCase):
         engine = create_engine('sqlite://')
         from .models import (
             Base,
-            MyModel,
+            Course,
             )
         DBSession.configure(bind=engine)
         Base.metadata.create_all(engine)
         with transaction.manager:
-            model = MyModel(name='one', value=55)
-            DBSession.add(model)
+            crs = Course(subject='one', term=55)
+            DBSession.add(crs)
 
     def tearDown(self):
         DBSession.remove()
@@ -29,7 +29,8 @@ class TestMyViewSuccessCondition(unittest.TestCase):
         from .views import my_view
         request = testing.DummyRequest()
         info = my_view(request)
-        self.assertEqual(info['one'].name, 'one')
+        self.assertEqual(info['one'].subject, 'one')
+        self.assertEqual(info['one'].term, 55)
         self.assertEqual(info['project'], 'assessdb')
 
 
@@ -40,7 +41,6 @@ class TestMyViewFailureCondition(unittest.TestCase):
         engine = create_engine('sqlite://')
         from .models import (
             Base,
-            MyModel,
             )
         DBSession.configure(bind=engine)
 
