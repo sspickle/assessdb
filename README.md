@@ -58,32 +58,34 @@ Now, on your dev machine mount the home directory just shared (e.g., here's what
 
 5) Launch an assessdb container to run the code:
 
-   $ docker run --rm -t -i --volumes-from home-vol --link db:db --name=app --entrypoint="/bin/bash" -p 6543:6543 sspickle/assessdb:0.01 -i
+   $ docker run --rm -t -i --volumes-from home-vol --link db:db --entrypoint="/bin/bash" -p 6543:6543 sspickle/assessdb:0.04 -i
 
 6) Initialize the db stuff (if you haven't yet):
 
-    root@e4f89c93098e:/# cd /home/assessdb/src/
-    root@e4f89c93098e:/home/assessdb/src# sh -v dbsetup.sh 
+    root@e4f89c93098e:# sh -v /home/assessdb/src/dbsetup.sh 
     #!/bin/bash
 
     createuser -h db -U postgres -d webuser
     createdb -h db -U webuser assessdev
 
-    root@be072c1236c3:/home/assessdb/src# initialize_assessdb_db development.ini 
+    root@be072c1236c3:/# initialize_assessdb_db /home/assessdb/webapp/development.ini
 
     (lots of output)
 
 7) Run the tests, and setup for development:
 
-    root@e4f89c93098e:/home/assessdb/src# python setup.py develop
-
-   root@e4f89c93098e:/home/assessdb/src# python setup.py test -q
+    root@74551cd296f5:/# cd /home/assessdb/webapp/
+    root@74551cd296f5:/home/assessdb/webapp# python setup.py develop
+    
+    (lots of output)
+    
+    root@74551cd296f5:/home/assessdb/webapp# python setup.py test -q
    
-   (see what passes and fails. Of course, everything should pass!)
+    (see what passes and fails. Of course, everything should pass!)
    
 8) Run the server and point browser to port 6543!
 
-   root@be072c1236c3:/home/assessdb/src# pserve development.ini 
+   root@be072c1236c3:/home/assessdb/webapp# pserve development.ini 
    Starting server in PID 18.
    serving on http://0.0.0.0:6543
 
