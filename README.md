@@ -1,7 +1,9 @@
 assessdb
 ========
 
-An academic assessment database project (Still highly embryonic!)
+An academic assessment database project (Still highly embryonic!) 
+
+Hopefully I'll have time to devote to this soon.
 
 At this point, the webserver works, but there's lots of database work still
 to finish.
