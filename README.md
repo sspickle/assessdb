@@ -1,7 +1,7 @@
 assessdb
 ========
 
-An academic assessment database project
+An academic assessment database project (for branch)
 
 Getting Started
 ---------------
