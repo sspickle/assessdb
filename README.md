@@ -3,6 +3,9 @@ assessdb
 
 An academic assessment database project (Still highly embryonic!)
 
+At this point, the webserver works, but there's lots of database work still
+to finish.
+
 Getting Started
 ---------------
 
