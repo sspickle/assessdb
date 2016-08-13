@@ -17,6 +17,13 @@ requires = [
     'transaction',
     'zope.sqlalchemy',
     'waitress',
+    'cornice',
+    ]
+
+tests_require = [
+    'WebTest >= 1.3.1',  # py3 compat
+    'pytest',  # includes virtualenv
+    'pytest-cov',
     ]
 
 setup(name='assessdb',
@@ -24,11 +31,11 @@ setup(name='assessdb',
       description='assessdb',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
-        "Programming Language :: Python",
-        "Framework :: Pyramid",
-        "Topic :: Internet :: WWW/HTTP",
-        "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
-        ],
+          "Programming Language :: Python",
+          "Framework :: Pyramid",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
+      ],
       author='',
       author_email='',
       url='',
@@ -36,12 +43,15 @@ setup(name='assessdb',
       packages=find_packages(),
       include_package_data=True,
       zip_safe=False,
-      test_suite='assessdb',
+      extras_require={
+          'testing': tests_require,
+      },
       install_requires=requires,
       entry_points="""\
       [paste.app_factory]
       main = assessdb:main
       [console_scripts]
       initialize_assessdb_db = assessdb.scripts.initializedb:main
+      import_csv_people = assessdb.scripts.import_csv_people:main
       """,
       )

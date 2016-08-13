@@ -8,34 +8,17 @@ from sqlalchemy import (
     ForeignKey,
     )
 
-from sqlalchemy.ext.declarative import declarative_base
+from .meta import Base
 
 from sqlalchemy.orm import (
-    scoped_session,
-    sessionmaker,
     relationship,
     backref,
     )
 
-from zope.sqlalchemy import ZopeTransactionExtension
 from sqlalchemy.orm.exc import NoResultFound
 
 import datetime
-
-#
-# utility for expanding env variables
-#
-
 import os
-
-def expandvars_dict(settings):
-    """Expands all environment variables in a settings dictionary."""
-    return dict((key, os.path.expandvars(value)) for
-                key, value in settings.iteritems())
-
-
-DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
-Base = declarative_base()
 
 def get_one_or_create(session,
                       model,
@@ -67,9 +50,10 @@ class Course(Base):
 class Person(Base):
     __tablename__ = 'people'
     id = Column(Integer, primary_key=True)
-    first = Column(Text)
-    last = Column(Text)
-    upid = Column(Text)
+    first = Column(Text)  # first name
+    last = Column(Text)   # last name
+    upid = Column(Text)   # external id (e.g., school student id)
+    email = Column(Text)  # reference email address
     
 class Role(Base):
     __tablename__ = 'roles'
