@@ -4,7 +4,7 @@
 //
 
 
-define(['backbone','backbone.marionette',], function(Backbone,Mnt) {
+define(['backbone','backbone.marionette','mathquill','etch'], function(Backbone,Mnt,MQ,Etch) {
   var App = Backbone.View.extend({
     initialize: function() {
         console.log("Got it!");
@@ -67,6 +67,8 @@ define(['backbone','backbone.marionette',], function(Backbone,Mnt) {
             el: '#content',
             childView: PersonView,
     });
+    
+    
 
     var peopleView = new PeopleView();
         

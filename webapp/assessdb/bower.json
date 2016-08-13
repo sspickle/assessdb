@@ -7,6 +7,8 @@
     "underscore": "latest",
     "requirejs": "~2.1.15",
     "marionette": "~2.4.7",
-    "bootstrap": "~3.2.0"
+    "bootstrap": "~3.2.0",
+    "etch": "git@github.com:joshontheweb/etch.git#^0.6.3",
+    "mathquill-0.10.1": "https://github.com/mathquill/mathquill/releases/download/v0.10.1/mathquill-0.10.1.tgz"
   }
 }

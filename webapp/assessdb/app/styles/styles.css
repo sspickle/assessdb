@@ -1,5 +1,7 @@
 /* Bootstrap */
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
+@import '../scripts/vendor/etch/styles/etch.css';
+@import '../scripts/vendor/mathquill-0.10.1/mathquill.css';
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -6167,4 +6169,25 @@ button.close {
 /* Skeleton */
 body {
   background-color: white;
+}
+.etch-editor-button span {
+  background: url('images/math_edit_icons.png') no-repeat;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.etch-editor-panel .etch-math span {
+  background-position: -420px 0;
+}
+.etch-editor-panel .etch-sqrt span {
+  background-position: -450px 0;
+}
+.etch-editor-panel .etch-pm span {
+  background-position: -480px 0;
+}
+.etch-editor-panel .etch-frac span {
+  background-position: -510px 0;
+}
+.etch-editor-panel .etch-pow span {
+  background-position: -540px 0;
 }

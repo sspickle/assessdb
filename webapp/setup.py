@@ -18,6 +18,7 @@ requires = [
     'zope.sqlalchemy',
     'waitress',
     'cornice',
+    'bcrypt',
     ]
 
 tests_require = [
@@ -53,5 +54,7 @@ setup(name='assessdb',
       [console_scripts]
       initialize_assessdb_db = assessdb.scripts.initializedb:main
       import_csv_people = assessdb.scripts.import_csv_people:main
+      import_csv_instruments = assessdb.scripts.import_csv_instruments:main
+      import_csv_courses = assessdb.scripts.import_csv_courses:main
       """,
       )
