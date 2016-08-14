@@ -8,6 +8,7 @@ require.config({
     'backbone.marionette': 'vendor/marionette/lib/backbone.marionette',
     'mathquill': 'vendor/mathquill-0.10.1/mathquill',
     'etch': 'vendor/etch/scripts/etch',
+    'bootstrap': 'vendor/bootstrap/dist/js/bootstrap'
   },
   shim: {
     underscore: {
@@ -16,6 +17,10 @@ require.config({
     backbone: {
       exports: 'Backbone',
       deps: ['jquery', 'underscore']
+    },
+    bootstrap: {
+        exports: 'Bootstrap',
+        deps: ['jquery']
     },
     marionette: {
       exports: 'Backbone.Marionette',
@@ -32,7 +37,11 @@ require.config({
   },
   deps: ['jquery', 'underscore']
 });
- 
-require(['views/app'], function(AppView) {
-  new AppView; 
-});
+
+require(["App", "AppRouter", "AppController", "bootstrap"],
+    function (App, AppRouter, AppController) {
+        App.appRouter = new AppRouter({
+            controller:new AppController()
+        });
+        App.start();
+    });

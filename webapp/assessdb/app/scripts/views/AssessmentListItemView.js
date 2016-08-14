@@ -2,8 +2,6 @@
 // For toying around, just build everything here. 
 // As the UI model becomes clearer we can modularize etc.
 //
-
-
 define(['backbone','backbone.marionette','mathquill','etch'], function(Backbone,Mnt,MQ,Etch) {
   var App = Backbone.View.extend({
     initialize: function() {
