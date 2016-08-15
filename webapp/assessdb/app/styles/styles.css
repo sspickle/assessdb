@@ -6727,6 +6727,7 @@ button.close {
 /* Skeleton */
 body {
   background-color: white;
+  padding-top: 70px;
 }
 .etch-editor-button span {
   background: url('images/math_edit_icons.png') no-repeat;

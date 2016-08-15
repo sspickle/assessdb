@@ -1,17 +1,14 @@
-//
-// For toying around, just build everything here. 
-// As the UI model becomes clearer we can modularize etc.
-//
 
-
-define(['backbone','backbone.marionette','mathquill','etch'], function(Backbone,Mnt,MQ,Etch) {
+define(['backbone', 'backbone.marionette'], function(Backbone) {
   var PLView = Backbone.View.extend({
     initialize: function() {
-        console.log("Got it!");
+        console.log("Got it! PLV");
         var peopleView = new PeopleView();
-        peopleView.collection = new PersonCollection();
-        peopleView.collection.fetch();
-        peopleView.render();
+        peopleView.collection = new PersonCollection([
+        {first:'Joe', last:'Smith'},
+        {first:'Sam', last:'Spade'}]);
+//        peopleView.collection.fetch();
+        peopleView.doRender();
     }
   });
   
@@ -21,42 +18,17 @@ define(['backbone','backbone.marionette','mathquill','etch'], function(Backbone,
     
     Person = Backbone.Model.extend({
         defaults :{
-            firstName : '',
-            lastName : '',
-            studentID : '',
+            first : '',
+            last : '',
+            upid : '',
             email: ''
-        }
-    });
-
-    Class = Backbone.Model.extend({
-        defaults :{
-            name : '',
-            startDate : '',
-            endDate : ''
-        }
-    });
-
-    Role = Backbone.Model.extend({
-        defaults :{
-            name : ''
-        }
-    });
-
-    Section = Backbone.Model.extend({
-        defaults :{
-            name : '',
-            classID : ''
         }
     });
 
     PersonCollection = Backbone.Collection.extend({
         model: Person,
-        url: '/restapi/persons',
-        initialize: function () {
-          this.listenTo(this.model, 'change', this.render);    
-          }
+//        url: '/restapi/persons',
     });
-
 
     var PersonView = Backbone.Marionette.ItemView.extend({
             tagName : 'li',
@@ -65,11 +37,12 @@ define(['backbone','backbone.marionette','mathquill','etch'], function(Backbone,
 
     var PeopleView = Backbone.Marionette.CollectionView.extend({
             tagName : 'ul',
-            el: '#content',
             childView: PersonView,
+            doRender: function() {
+                debugger;
+                this.render();
+            },
     });
     
-    
-
   return PLView;
 });

@@ -1,7 +1,7 @@
 {
-  "name": "SBGBook",
+  "name": "assessdb",
   "version": "0.0.1",
-  "description": "SBGBook Front End",
+  "description": "assessdb Front End",
   "repository": {
     "type": "git",
     "url": ""

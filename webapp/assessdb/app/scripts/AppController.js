@@ -1,12 +1,15 @@
 define(['App', 'backbone', 'backbone.marionette', 'views/PersonListView', 'views/HeaderView'],
-    function (App, Backbone, Marionette, PLView, HeaderView) {
-    return Backbone.Marionette.Controller.extend({
+    function (App, Backbone, Marionette, ILView, HeaderView) {
+    return Backbone.Marionette.Object.extend({
         initialize:function (options) {
-            App.headerRegion.show(new HeaderView());
+            console.log("In init func");
+            App.regions.header.show(new HeaderView());
         },
         //gets mapped to in AppRouter's appRoutes
         index:function () {
-            App.mainRegion.show(new PLView());
+            console.log("In index func");
+            var newView = new ILView();
+            App.regions.main.show(newView);
         }
     });
 });

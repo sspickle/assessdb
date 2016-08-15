@@ -1,16 +1,17 @@
 define(['jquery', 'backbone', 'backbone.marionette'],
     function ($, Backbone, Marionette) {
         var App = new Backbone.Marionette.Application();
-
-        //Organize Application into regions corresponding to DOM elements
-        //Regions can contain views, Layouts, or subregions nested as necessary
-        App.addRegions({
-            headerRegion:"#header",
-            mainRegion:"#main"
+        var RegionContainer =  Backbone.Marionette.LayoutView.extend({
+            el: "#app-container",
+    
+            regions: {
+                main: "#main-region",
+                header: "#header-region"
+                }
         });
-
+                 
         App.addInitializer(function () {
-            Backbone.history.start();
+            App.regions = new RegionContainer();
         });
 
         return App;

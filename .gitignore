@@ -9,6 +9,9 @@ bower_components
 #Mac .DS_Store metadata file
 .DS_Store
 
+# compiled template file
+templates.js
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
