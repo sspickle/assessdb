@@ -8,7 +8,8 @@ define(['jquery', 'backbone', 'entities/personObjects', 'views/PersonListView', 
 
         regions: {
             main: "#main-region",
-            header: "#header-region"
+            header: "#header-region",
+            footer: "#footer-region"
             }
     });
          
@@ -16,6 +17,7 @@ define(['jquery', 'backbone', 'entities/personObjects', 'views/PersonListView', 
            //"index" must be a method in AppRouter's controller
            appRoutes: {
                "": "index",
+               "home": "index",
                "contact":"confunc"
            }
        });
@@ -23,11 +25,9 @@ define(['jquery', 'backbone', 'entities/personObjects', 'views/PersonListView', 
     ControllerClass = Backbone.Marionette.Object.extend({
             initialize:function (options) {
                 this.listView = options.listView;
-                console.log("In controller init func" + this.listView);
             },
             //gets mapped to in AppRouter's appRoutes
             index:function () {
-                console.log("In index func"+ this.listView);
                 App.regions.main.show(this.listView);
             },
             confunc: function() {
@@ -45,19 +45,18 @@ define(['jquery', 'backbone', 'entities/personObjects', 'views/PersonListView', 
         // Add router/controller
         //
 
-        var myCollection = new Entities.PersonCollection();
-        myCollection.fetch();
+        App.myPersonCollection = new Entities.PersonCollection();
+        App.myPersonCollection.fetch();
         
-        var myListView = new PeopleView({collection: myCollection});
-        
+        var myPersonListView = new PeopleView({collection: App.myPersonCollection});
         var myHeaderView = new HeaderView();
 
-        App.regions.main.show(myListView);
-        App.regions.header.show(myHeaderView);    
+        App.regions.main.show(myPersonListView);
+        App.regions.header.show(myHeaderView);
 
         var myRouter = new RouterClass(
             {controller: new ControllerClass({
-                listView:myListView
+                listView:myPersonListView
                 })
             });
             
