@@ -1,7 +1,3 @@
-define(['backbone', 'backbone.marionette','bootstrap'],
-    function (Backbone) {
-        //ItemView provides some default rendering logic
-        return Backbone.Marionette.ItemView.extend({
-            template:'#headerTemplate'
-        });
-    });
+define(['backbone', 'templates', 'backbone.marionette'], function(Backbone, JST) {
+    return Backbone.Marionette.ItemView.extend({template:JST["app/scripts/templates/header.ejs"]});
+});
