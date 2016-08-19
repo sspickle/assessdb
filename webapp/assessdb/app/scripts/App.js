@@ -1,5 +1,5 @@
-define(['jquery', 'backbone', 'entities/personObjects', 'views/PersonListView', 'views/HeaderView', 'backbone.marionette'],
-    function ($, Backbone, Entities, PeopleView, HeaderView) {
+define(['jquery', 'backbone', 'entities/personObjects', 'entities/instrumentObjects','views/PersonListView', 'views/InstrumentListView', 'views/HeaderView', 'views/StaticView','backbone.marionette'],
+    function ($, Backbone, PersonObjects, InstrumentObjects, PeopleView, InstrumentsView, HeaderView, StaticView) {
 
     var App = new Backbone.Marionette.Application();
 
@@ -18,20 +18,36 @@ define(['jquery', 'backbone', 'entities/personObjects', 'views/PersonListView', 
            appRoutes: {
                "": "index",
                "home": "index",
+               "instruments": "instruments",
                "contact":"confunc"
            }
        });
 
     ControllerClass = Backbone.Marionette.Object.extend({
             initialize:function (options) {
-                this.listView = options.listView;
+            
+                this.myPersonCollection = new PersonObjects.PersonCollection();
+                this.myPersonCollection.fetch();
+        
+                this.myInstrumentCollection = new InstrumentObjects.InstrumentCollection();
+                this.myInstrumentCollection.fetch();
+        
+                App.regions.main.show(new PeopleView({collection: this.myPersonCollection}));
+                App.regions.header.show(new HeaderView());
+
             },
-            //gets mapped to in AppRouter's appRoutes
+
             index:function () {
-                App.regions.main.show(this.listView);
+                App.regions.main.show(new PeopleView({collection: this.myPersonCollection}));
             },
+            
+            instruments: function() {
+                debugger;
+                App.regions.main.show(new InstrumentsView({collection: this.myInstrumentCollection}));
+            },
+            
             confunc: function() {
-                console.log("in contact func");
+                App.regions.main.show(new StaticView());
             }
         });
     
@@ -44,21 +60,10 @@ define(['jquery', 'backbone', 'entities/personObjects', 'views/PersonListView', 
         //
         // Add router/controller
         //
-
-        App.myPersonCollection = new Entities.PersonCollection();
-        App.myPersonCollection.fetch();
         
-        var myPersonListView = new PeopleView({collection: App.myPersonCollection});
-        var myHeaderView = new HeaderView();
-
-        App.regions.main.show(myPersonListView);
-        App.regions.header.show(myHeaderView);
-
         var myRouter = new RouterClass(
-            {controller: new ControllerClass({
-                listView:myPersonListView
-                })
-            });
+            {controller: new ControllerClass({})}
+            );
             
         Backbone.history.start();
     })
