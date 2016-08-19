@@ -42,7 +42,6 @@ define(['jquery', 'backbone', 'entities/personObjects', 'entities/instrumentObje
             },
             
             instruments: function() {
-                debugger;
                 App.regions.main.show(new InstrumentsView({collection: this.myInstrumentCollection}));
             },
             
