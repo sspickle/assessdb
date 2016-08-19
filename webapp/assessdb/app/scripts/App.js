@@ -34,7 +34,6 @@ define(['jquery', 'backbone', 'entities/personObjects', 'entities/instrumentObje
         
                 App.regions.main.show(new PeopleView({collection: this.myPersonCollection}));
                 App.regions.header.show(new HeaderView());
-
             },
 
             index:function () {
