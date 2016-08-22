@@ -9,6 +9,7 @@ define(['jquery', 'backbone', 'entities/personObjects', 'entities/instrumentObje
         regions: {
             main: "#main-region",
             header: "#header-region",
+            display: "#display-region",
             footer: "#footer-region"
             }
     });
@@ -50,9 +51,14 @@ define(['jquery', 'backbone', 'entities/personObjects', 'entities/instrumentObje
         });
     
     App.on("before:start", function() {
+        debugger;
          App.regions = new RegionContainer();
     });
 
+    App.on("show:instrument", function(childView) {
+        App.regions.display.show(childView);
+    });
+    
     App.on("start", function() {
     
         //
