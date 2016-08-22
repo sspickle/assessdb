@@ -51,7 +51,6 @@ define(['jquery', 'backbone', 'entities/personObjects', 'entities/instrumentObje
         });
     
     App.on("before:start", function() {
-        debugger;
          App.regions = new RegionContainer();
     });
 
