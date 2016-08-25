@@ -9,8 +9,8 @@ bower_components
 #Mac .DS_Store metadata file
 .DS_Store
 
-# compiled template file
-templates.js
+#compiled style file
+/webapp/assessdb/static/styles.css
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

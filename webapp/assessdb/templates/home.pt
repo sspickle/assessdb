@@ -6,16 +6,13 @@
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="online assessment with easy content editing">
     <meta name="author" content="AssessDB Team">
-
-    <link rel="shortcut icon" href="${request.static_url('assessdb:static/pyramid-16x16.png')}">    
-    <link rel="stylesheet" media="screen" href="${request.static_url('assessdb:app/styles/styles.css')}" type="text/css" />
+    <link rel="shortcut icon" href="${request.static_url('assessdb:static/pyramid-16x16.png')}">
+    <link rel="stylesheet" media="screen" href="${request.static_url('assessdb:static/styles.css')}" type="text/css" />
     
     <title>Assessment Database</title>
-
-    <script data-main="app/scripts/main" src="app/scripts/vendor/requirejs/require.js"></script>    
   </head>
 
-  <body>
+<body>
     <div class="container" id="app-container">
         <div class="row" id="header-region"></div>
         <div class="row">
@@ -23,6 +20,7 @@
             <div class="col-sm-8" id="display-region"></div>
         <div id="footer-region"></div>
     </div>
-  </body>
+  <script src="${request.static_url('assessdb:static/js/app.js')}"></script>
+</body>
 </html>
 
