@@ -14,9 +14,7 @@ var StaticView = require('./views/staticView.js');
 
 var App = new Backbone.Marionette.Application();
 
-let appEventChannel = Radio.channel('appevents');
-
-var RegionContainer =  Backbone.Marionette.LayoutView.extend({
+var RegionContainer =  Backbone.Marionette.View.extend({
     el: "#app-container",
 
     regions: {
@@ -47,23 +45,24 @@ var ControllerClass = Backbone.Marionette.Object.extend({
             this.myInstrumentCollection = new InstrumentCollection();
             this.myInstrumentCollection.fetch();
     
-            App.regions.main.show(new PeopleView({collection: this.myPersonCollection}));
-            App.regions.header.show(new HeaderView());
+            App.regions.showChildView('main',new PeopleView({collection: this.myPersonCollection}));
+            App.regions.showChildView('header',new HeaderView());
         },
 
         index:function () {
-            App.regions.main.show(new PeopleView({collection: this.myPersonCollection}));
+            App.regions.showChildView('main',new PeopleView({collection: this.myPersonCollection}));
         },
         
         instruments: function() {
-            App.regions.main.show(new InstrumentsView({collection: this.myInstrumentCollection}));
+            App.regions.showChildView('main', new InstrumentsView({collection: this.myInstrumentCollection}));
         },
         
         confunc: function() {
-            App.regions.main.show(new StaticView());
+            App.regions.showChildView('main', new StaticView());
         },
+        
         displayInstrument: function(id) {
-            App.regions.display.show(new StaticView());
+            App.regions.showChildView('display',new StaticView());
         }
     });
 
@@ -86,10 +85,6 @@ App.on("start", function() {
         );
         
     Backbone.history.start();
-});
-
-App.listenTo(appEventChannel, {
-    'instrument:clicked' : function (obj) {console.log("Hey, we got the message!", obj);}
 });
 
 App.start();

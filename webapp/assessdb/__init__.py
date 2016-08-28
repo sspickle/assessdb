@@ -23,11 +23,4 @@ def main(global_config, **settings):
     config.include('.routes')
     config.scan()
 
-    config.add_route('home', '/')
-    config.add_route('homex', '/blah')
-    config.add_route('hello', '/howdy')
-    config.add_route('login', '/login')
-    config.add_route('logout', '/logout')
-    
-    
     return config.make_wsgi_app()

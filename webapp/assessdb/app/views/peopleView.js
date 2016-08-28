@@ -1,7 +1,7 @@
 
 var Backbone = require('backbone');
 
-var PersonView = Backbone.Marionette.ItemView.extend({
+var PersonView = Backbone.Marionette.View.extend({
         tagName : 'li',
         template:  require("../templates/personItemView.html"),
         events: {

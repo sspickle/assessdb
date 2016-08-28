@@ -1,6 +1,6 @@
 var Backbone = require('backbone');
 
-var HeaderView = Backbone.Marionette.ItemView.extend(
+var HeaderView = Backbone.Marionette.View.extend(
         {
             template:require("../templates/header.html"),
             

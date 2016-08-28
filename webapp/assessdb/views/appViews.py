@@ -36,14 +36,7 @@ class AssessDBViews:
         return {'name':'default view', 'one': one, 'project': 'assessdb'}
 
 
-    @view_config(route_name='homex')
-    def home(self):
-        return {'name': 'Home View'}
-
-    @view_config(route_name='hello')
-    def hello(self):
-        return {'name': 'Hello View'}
-
+    """
     @view_config(route_name='login', renderer='../templates/login.pt')
     def login(self):
         request = self.request
@@ -81,7 +74,8 @@ class AssessDBViews:
         return HTTPFound(location=url,
                          headers=headers)
                          
-                         
+"""
+    
 db_err_msg = """\
 Pyramid is having a problem using your SQL database.  The problem
 might be caused by one of the following things:

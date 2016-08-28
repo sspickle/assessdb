@@ -2,7 +2,7 @@
 var Backbone = require('backbone');
 var Radio = require('backbone.radio');
 
-var InstrumentView = Backbone.Marionette.ItemView.extend({
+var InstrumentView = Backbone.Marionette.View.extend({
         tagName : 'li',
         template: require('../templates/instrumentItemView.html'),
         events: {
