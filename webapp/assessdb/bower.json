@@ -1,5 +1,5 @@
 {
-  "name": "skeleton init",
+  "name": "assessdb",
   "version": "1.0.0",
   "dependencies": {
     "etch": "git@github.com:joshontheweb/etch.git#^0.6.3",

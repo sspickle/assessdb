@@ -1,6 +1,7 @@
 require('./setup.js');
 
 var Backbone = require('backbone');
+var Radio = require('backbone.radio');
 var Marionette = require('backbone.marionette');
 
 var PersonCollection = require('./models/personCollection.js');
@@ -12,6 +13,8 @@ var HeaderView = require('./views/headerView.js');
 var StaticView = require('./views/staticView.js');
 
 var App = new Backbone.Marionette.Application();
+
+let appEventChannel = Radio.channel('appevents');
 
 var RegionContainer =  Backbone.Marionette.LayoutView.extend({
     el: "#app-container",
@@ -30,7 +33,8 @@ var RouterClass = Backbone.Marionette.AppRouter.extend({
            "": "index",
            "home": "index",
            "instruments": "instruments",
-           "contact":"confunc"
+           "contact":"confunc",
+           "instrument/:id":"displayInstrument"
        }
    });
 
@@ -57,6 +61,9 @@ var ControllerClass = Backbone.Marionette.Object.extend({
         
         confunc: function() {
             App.regions.main.show(new StaticView());
+        },
+        displayInstrument: function(id) {
+            App.regions.display.show(new StaticView());
         }
     });
 
@@ -79,6 +86,10 @@ App.on("start", function() {
         );
         
     Backbone.history.start();
-})
+});
+
+App.listenTo(appEventChannel, {
+    'instrument:clicked' : function (obj) {console.log("Hey, we got the message!", obj);}
+});
 
 App.start();

@@ -1,5 +1,6 @@
 
 var Backbone = require('backbone');
+var Radio = require('backbone.radio');
 
 var InstrumentView = Backbone.Marionette.ItemView.extend({
         tagName : 'li',
@@ -17,7 +18,7 @@ var InstrumentsView = Backbone.Marionette.CollectionView.extend({
         childEvents : {
             'instrument:clicked': function(childView, model) {
                 console.log(childView,model);
-                this.trigger("show:instrument", childView);
+                Radio.trigger('appevents', "instrument:clicked", childView);
             }
         }
 });
