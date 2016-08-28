@@ -11,7 +11,7 @@ bower_components
 
 #compiled style/js file
 /webapp/assessdb/static/styles.css
-/webapp/assessdb/static/app.js
+/webapp/assessdb/static/js/app.js
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
