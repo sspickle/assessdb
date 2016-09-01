@@ -2,7 +2,7 @@
   "name": "assessdb",
   "version": "1.0.0",
   "dependencies": {
-    "etch": "git@github.com:joshontheweb/etch.git#^0.6.3",
+    "etch": "https://github.com/joshontheweb/etch.git#^0.6.3",
     "mathquill-0.10.1": "https://github.com/mathquill/mathquill/releases/download/v0.10.1/mathquill-0.10.1.tgz",
     "bootstrap": "^3.3.7"
   }
