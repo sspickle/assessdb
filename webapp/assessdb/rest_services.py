@@ -12,6 +12,7 @@ from pyramid.response import Response
 from .models import (
     Person,
     Instrument,
+    Course,
 )
 
 from cornice import Service
@@ -58,5 +59,27 @@ def get_people_info(request):
     results=[]
     for p in result:
       results.append({'id':p.id, 'name':p.name, 'description':p.description})
+
+    return results
+
+course = Service(name='course', path='/restapi/courses/{id}', description="Course Service")
+courses = Service(name='courses', path='/restapi/courses', description="Courses Service")
+
+@course.get()
+def get_course_info(request):
+    """Get info for an instrument object"""
+    cid = request.matchdict.get('id','')
+    c=request.dbsession.query(Course).filter(Course.id==pid).first()
+    return {'id':c.id, 'subject':c.subject, 'num':c.num, 'sect':c.sect, 'term':c.term, 'CRN':c.CRN}
+
+@courses.get()
+def get_courses_info(request):
+    """Get a collection of person objects"""
+
+    result = request.dbsession.query(Course).order_by(Course.CRN.asc()).all()
+
+    results=[]
+    for c in result:
+      results.append({'id':c.id, 'subject':c.subject, 'num':c.num, 'sect':c.sect, 'term':c.term, 'CRN':c.CRN})
 
     return results

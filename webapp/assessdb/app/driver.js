@@ -6,11 +6,15 @@ var Marionette = require('backbone.marionette');
 
 var PersonCollection = require('./models/personCollection.js');
 var InstrumentCollection = require('./models/instrumentCollection.js');
+var CourseCollection = require('./models/courseCollection.js');
 
 var PeopleView = require('./views/peopleView.js');
 var InstrumentsView = require('./views/instrumentListView.js');
+var InstrumentDetailView = require('./views/instrumentDetailView.js');
+var CoursesView = require('./views/enrollmentListView.js');
 var HeaderView = require('./views/headerView.js');
 var StaticView = require('./views/staticView.js');
+var EmptyView = require('./views/emptyView.js');
 
 var App = new Backbone.Marionette.Application();
 
@@ -57,22 +61,28 @@ var ControllerClass = Backbone.Marionette.Object.extend({
         index:function () {
             this.updateHeader("home");
             App.regions.showChildView('main',new PeopleView({collection: this.myPersonCollection}));
+            App.regions.showChildView('display', new EmptyView());
         },
         
         instruments: function() {
             this.updateHeader("instruments");
+
             var anInstrumentsView = new InstrumentsView({collection: this.myInstrumentCollection});
-            App.regions.showChildView('main', anInstrumentsView);
             this.listenTo(anInstrumentsView, "childview:instrument:clicked", this.displayInstrument);
+
+            App.regions.showChildView('main', anInstrumentsView);
+            App.regions.showChildView('display', new EmptyView());
         },
         
         confunc: function() {
             this.updateHeader("contact");
             App.regions.showChildView('main', new StaticView());
+            App.regions.showChildView('display', new EmptyView());
         },
         
         displayInstrument: function(thing1, thing2) {
-            App.regions.showChildView('display',new StaticView());
+            var newView = new InstrumentDetailView({model:thing1});
+            App.regions.showChildView('display',newView);
         },
         
         updateHeader: function(theTab) {

@@ -1,8 +1,7 @@
 
-var Backbone = require('backbone');
-var Radio = require('backbone.radio');
+var Mn = require('backbone.marionette');
 
-var InstrumentView = Backbone.Marionette.View.extend({
+var InstrumentView = Mn.View.extend({
         tagName : 'li',
         template: require('../templates/instrumentItemView.html'),
         events: {
@@ -12,7 +11,7 @@ var InstrumentView = Backbone.Marionette.View.extend({
         }
     });
     
-var InstrumentsView = Backbone.Marionette.CollectionView.extend({
+var InstrumentsView = Mn.CollectionView.extend({
         tagName : 'ul',
         childView: InstrumentView,
     });
