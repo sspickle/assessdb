@@ -26,6 +26,9 @@ var RegionContainer =  Backbone.Marionette.View.extend({
 });
          
 var RouterClass = Backbone.Marionette.AppRouter.extend({
+
+    initialize: function() {
+    },
        //"index" must be a method in AppRouter's controller
        appRoutes: {
            "": "index",
@@ -45,24 +48,35 @@ var ControllerClass = Backbone.Marionette.Object.extend({
             this.myInstrumentCollection = new InstrumentCollection();
             this.myInstrumentCollection.fetch();
     
+            
             App.regions.showChildView('main',new PeopleView({collection: this.myPersonCollection}));
-            App.regions.showChildView('header',new HeaderView());
+            this.myHeader = new HeaderView();
+            App.regions.showChildView('header', this.myHeader);
         },
-
+        
         index:function () {
+            this.updateHeader("home");
             App.regions.showChildView('main',new PeopleView({collection: this.myPersonCollection}));
         },
         
         instruments: function() {
-            App.regions.showChildView('main', new InstrumentsView({collection: this.myInstrumentCollection}));
+            this.updateHeader("instruments");
+            var anInstrumentsView = new InstrumentsView({collection: this.myInstrumentCollection});
+            App.regions.showChildView('main', anInstrumentsView);
+            this.listenTo(anInstrumentsView, "childview:instrument:clicked", this.displayInstrument);
         },
         
         confunc: function() {
+            this.updateHeader("contact");
             App.regions.showChildView('main', new StaticView());
         },
         
-        displayInstrument: function(id) {
+        displayInstrument: function(thing1, thing2) {
             App.regions.showChildView('display',new StaticView());
+        },
+        
+        updateHeader: function(theTab) {
+            this.myHeader.setActiveTab(theTab);
         }
     });
 

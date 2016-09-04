@@ -8,10 +8,20 @@ var HeaderView = Backbone.Marionette.View.extend(
                 'click a': "onClickLink"
             },
             
-            onClickLink : function(e) {
-                this.$('li.active').toggleClass('active', false); // turn previously-selected nav link off
-                $(e.target).blur()
-                    .closest('li').toggleClass('active', true); // turn on new link
+            ui: {
+                home: "#homeHeader",
+                instruments: "#instrumentsHeader",
+                contact: "#contactHeader"
+            },
+
+            clearTabs: function() {
+                this.$('li.active').toggleClass('active', false); // turn any previously-selected nav link off
+            },
+
+            setActiveTab: function(theTab) {
+                this.clearTabs();
+                var thisTab = this.getUI(theTab);
+                thisTab.addClass('active');
             }
         });
         

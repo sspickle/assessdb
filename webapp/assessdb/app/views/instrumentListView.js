@@ -15,12 +15,6 @@ var InstrumentView = Backbone.Marionette.View.extend({
 var InstrumentsView = Backbone.Marionette.CollectionView.extend({
         tagName : 'ul',
         childView: InstrumentView,
-        childEvents : {
-            'instrument:clicked': function(childView, model) {
-                console.log(childView,model);
-                Radio.trigger('appevents', "instrument:clicked", childView);
-            }
-        }
-});
+    });
     
 module.exports = InstrumentsView;
