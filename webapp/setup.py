@@ -56,5 +56,6 @@ setup(name='assessdb',
       import_csv_people = assessdb.scripts.import_csv_people:main
       import_csv_instruments = assessdb.scripts.import_csv_instruments:main
       import_csv_courses = assessdb.scripts.import_csv_courses:main
+      import_csv_items = assessdb.scripts.import_csv_items:main
       """,
       )

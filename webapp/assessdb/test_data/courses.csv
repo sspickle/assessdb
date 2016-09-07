@@ -1,3 +1,3 @@
-subject,num,sect,term,CRN
-phys,153,01,201610,39485
-phil,101,02,201610,33847
+subject,num,sect,term,CRN,importTag
+phys,153,01,201610,39485,1
+phil,101,02,201610,33847,2

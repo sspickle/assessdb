@@ -46,6 +46,7 @@ class Course(Base):
     sect = Column(Text)
     term = Column(Integer)
     CRN = Column(Integer)
+    importTag = Column(Text)
     
 class Person(Base):
     __tablename__ = 'people'
@@ -54,11 +55,13 @@ class Person(Base):
     last = Column(Text)   # last name
     upid = Column(Text)   # external id (e.g., school student id)
     email = Column(Text)  # reference email address
+    importTag = Column(Text)
     
 class Role(Base):
     __tablename__ = 'roles'
     id = Column(Integer, primary_key=True)
     name = Column(Text)
+    importTag = Column(Text)
     
 class CoursesPeople(Base):
     """
@@ -79,12 +82,14 @@ class Instrument(Base):
     name = Column(Text)
     description = Column(Text)
     genetics = Column(Text)
+    importTag = Column(Text)
     
 class Objective(Base):
     __tablename__ = 'objectives'
     id = Column(Integer, primary_key=True)
     name = Column(Text)
     description = Column(Text)
+    importTag = Column(Text)
 
 class Assessment(Base):
     __tablename__ = 'assessments'
@@ -109,6 +114,7 @@ class Item(Base):
     ancestorid = Column(Integer, ForeignKey('items.id'), default=None)
     markup = Column(Text)
     genetics = Column(Text, default='')
+    importTag = Column(Text)
 
 class InstrumentItems(Base):
     __tablename__ = 'instrument_items'
@@ -121,11 +127,13 @@ class Blob(Base):
     id = Column(Integer, primary_key=True)
     type = Column(Text)
     data = Column(Binary)
+    importTag = Column(Text)
 
 class Answer(Base):
     __tablename__ = 'answers'
     id = Column(Integer, primary_key=True)
     markup = Column(Text)
+    importTag = Column(Text)
     
 class AnswerBlobs(Base):
     __tablename__ = 'answer_blobs'
@@ -142,9 +150,12 @@ class ItemAnswers(Base):
     __tablename__ = 'item_answers'
     itemid = Column(Integer, ForeignKey('items.id'), primary_key=True)
     answerid = Column(Integer, ForeignKey('answers.id'), primary_key=True)
-    answerattr = Column(Text, default='')
+    contextid = Column(Text, default='')  # id for this answer in the context of this item
+    answerattr = Column(Text, default='') # attributes of this answer in the context of this item
+    importTag = Column(Text)
     
 class ItemObjectives(Base):
     __tablename__ = 'itemo_objectives'
     itemid = Column(Integer, ForeignKey('items.id'), primary_key=True)
     objectiveid = Column(Integer, ForeignKey('objectives.id'), primary_key=True)
+    importTag = Column(Text)

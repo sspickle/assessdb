@@ -49,4 +49,5 @@ def main(argv=sys.argv):
                 p.last=row['last']
                 p.upid=row['upid']
                 p.email=row['email']
+                p.importTag=row['importTag']
                 dbsession.add(p)

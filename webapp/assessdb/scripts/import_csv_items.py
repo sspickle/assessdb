@@ -16,7 +16,7 @@ from ..models import (
     get_session_factory,
     get_tm_session,
     )
-from ..models import Course
+from ..models import Item
 
 def usage(argv):
     cmd = os.path.basename(argv[0])
@@ -44,11 +44,7 @@ def main(argv=sys.argv):
         with open(fname) as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                p=Course()
-                p.subject=row['subject']
-                p.num=row['num']
-                p.sect=row['sect']
-                p.term=row['term']
-                p.CRN=row['CRN']
+                p=Item()
+                p.markup=row['markup']
                 p.importTag=row['importTag']
                 dbsession.add(p)

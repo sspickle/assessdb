@@ -47,4 +47,5 @@ def main(argv=sys.argv):
                 p=Instrument()
                 p.name=row['name']
                 p.description=row['description']
+                p.importTag=row['importTag']
                 dbsession.add(p)
