@@ -29,12 +29,11 @@ class AssessDBViews:
     @view_config(route_name='home', renderer='../templates/home.pt')
     def my_view(self):
         try:
-            query = self.request.dbsession.query(Course)
-            one = query.filter(Course.subject == 'physics').first()
+            courses = self.request.dbsession.query(Course).all()
         except DBAPIError:
             return Response(db_err_msg, content_type='text/plain', status=500)
-        return {'name':'default view', 'one': one, 'project': 'assessdb'}
 
+        return {'name':'default view', 'courses': courses, 'project': 'assessdb'}
 
     """
     @view_config(route_name='login', renderer='../templates/login.pt')

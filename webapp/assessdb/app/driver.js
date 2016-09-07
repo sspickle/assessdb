@@ -8,6 +8,7 @@ var PersonCollection = require('./models/personCollection.js');
 var InstrumentCollection = require('./models/instrumentCollection.js');
 var CourseCollection = require('./models/courseCollection.js');
 
+var MainBodyView = require('./views/mainBodyView.js');
 var PeopleView = require('./views/peopleView.js');
 var InstrumentsView = require('./views/instrumentListView.js');
 var InstrumentDetailView = require('./views/instrumentDetailView.js');
@@ -16,18 +17,6 @@ var HeaderView = require('./views/headerView.js');
 var StaticView = require('./views/staticView.js');
 var EmptyView = require('./views/emptyView.js');
 
-var App = new Backbone.Marionette.Application();
-
-var RegionContainer =  Backbone.Marionette.View.extend({
-    el: "#app-container",
-
-    regions: {
-        main: "#main-region",
-        header: "#header-region",
-        display: "#display-region",
-        footer: "#footer-region"
-        }
-});
          
 var RouterClass = Backbone.Marionette.AppRouter.extend({
 
@@ -44,6 +33,7 @@ var RouterClass = Backbone.Marionette.AppRouter.extend({
    });
 
 var ControllerClass = Backbone.Marionette.Object.extend({
+
         initialize:function (options) {
         
             this.myPersonCollection = new PersonCollection();
@@ -90,25 +80,22 @@ var ControllerClass = Backbone.Marionette.Object.extend({
         }
     });
 
-App.on("before:start", function() {
-     App.regions = new RegionContainer();
-});
+var AppClass = Marionette.Application.extend({
+  region: '#app-container',
 
-App.on("show:instrument", function(childView) {
-    App.regions.display.show(childView);
-});
+  onStart: function() {
+    this.regions = new MainBodyView();
+    this.showView(this.regions);
 
-App.on("start", function() {
-
-    //
-    // Add router/controller
-    //
-    
     var myRouter = new RouterClass(
         {controller: new ControllerClass({})}
         );
         
     Backbone.history.start();
+
+  }
 });
+
+var App = new AppClass();
 
 App.start();

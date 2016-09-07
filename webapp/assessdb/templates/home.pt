@@ -14,11 +14,6 @@
 
 <body>
     <div class="container" id="app-container">
-        <div class="row" id="header-region"></div>
-        <div class="row">
-            <div class="col-sm-4" id="main-region"></div>
-            <div class="col-sm-8" id="display-region"></div>
-        <div id="footer-region"></div>
     </div>
   <script src="${request.static_url('assessdb:static/js/app.js')}"></script>
 </body>
