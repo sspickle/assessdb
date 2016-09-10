@@ -50,6 +50,8 @@
   "devDependencies": {
     "browserify": "^13.1.0",
     "browserify-shim": "^3.8.12",
-    "underscorify": "^1.0.0"
+    "node-underscorify": "0.0.14",
+    "underscorify": "^1.0.0",
+    "watchify": "^3.7.0"
   }
 }
